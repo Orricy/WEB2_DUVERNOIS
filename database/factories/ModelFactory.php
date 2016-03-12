@@ -25,14 +25,14 @@ $factory->define(App\Models\Post::class, function (Faker\Generator $faker) {
     return [
         'title' => $faker->word,
         'description' => $faker->text,
-        'user_id' => mt_rand(1,9),
+        'user_id' => mt_rand(1,50),
     ];
 });
 
 $factory->define(App\Models\Comment::class, function (Faker\Generator $faker) {
     return [
         'comment' => $faker->text,
-        'user_id' => mt_rand(1,9),
-        'post_id' => mt_rand(8,30),
+        'user_id' => mt_rand(1,50),
+        'post_id' => mt_rand(1,30),
     ];
 });

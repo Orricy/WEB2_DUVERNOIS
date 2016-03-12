@@ -18,6 +18,6 @@ class UsersTableSeeder extends Seeder
         	'remember_token' => str_random(10)
         ]);*/
 
-        factory(\App\Models\User::class, 50)->create(); // Créer 20 utilisateurs
+        factory(\App\Models\User::class, 0)->create(); // Créer 20 utilisateurs
     }
 }
