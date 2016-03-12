@@ -73,6 +73,25 @@ class PostController extends Controller
     }
 
     /**
+     * Store a newly created comment in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function storeComment(Request $request, $id)
+    {
+        //dd($id);
+
+        $comment = Comment::create([
+            'comment' =>$request->comment,
+            'user_id' => $request->user()->id,
+            'post_id' => 10,
+        ]);
+        return redirect()->route('articles.show', $id);
+    }
+
+    /**
      * Display the specified resource.
      *
      * @param  int  $id
@@ -81,12 +100,9 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::find($id);
-        $comments = Comment::where('post_id', $id)->get();
-        //dd($comments);
-        //$comments = Comment::all();
+        $comments = Comment::where('post_id', $id)->orderBy('id', 'desc')->get();
         if($post){
             return view('articles.show')->with(compact('post','comments'));
-            //return $post->title;
         }
         else{
             return view('articles.index');

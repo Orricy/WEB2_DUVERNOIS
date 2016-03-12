@@ -42,14 +42,12 @@ Route::group(['middleware' => 'web'], function () {
 
 		Route::get('/{id}', function ($id) {
 		    return 'articles no.'.$id;
-		});
+		});*/
 
-		Route::post('/', [
-			'as' => 'articles.store', 
-			'uses' => function (Request $request){
-		    	dd($request->all());
-			}
-		]);*/
+		Route::post('/{id}', [
+			'as' => 'articles.storeComment', 
+			'uses' => 'PostController@storeComment'
+		]);
 	});
 
     Route::auth();
