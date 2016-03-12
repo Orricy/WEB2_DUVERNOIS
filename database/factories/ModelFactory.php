@@ -16,6 +16,7 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
         'name' => $faker->name,
         'email' => $faker->email,
         'password' => bcrypt(str_random(10)),
+        'is_admin' => $faker->boolean,
         'remember_token' => str_random(10),
     ];
 });
@@ -24,14 +25,14 @@ $factory->define(App\Models\Post::class, function (Faker\Generator $faker) {
     return [
         'title' => $faker->word,
         'description' => $faker->text,
-        'user_id' => mt_rand(1,9),
+        'user_id' => mt_rand(1,50),
     ];
 });
 
 $factory->define(App\Models\Comment::class, function (Faker\Generator $faker) {
     return [
         'comment' => $faker->text,
-        'user_id' => mt_rand(1,9),
-        'post_id' => mt_rand(8,30),
+        'user_id' => mt_rand(1,50),
+        'post_id' => mt_rand(1,30),
     ];
 });

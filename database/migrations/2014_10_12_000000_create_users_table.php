@@ -17,13 +17,10 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password', 60);
+            $table->boolean('is_admin')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });
-
-        /*Schema::table('users', function (Blueprint $table) {
-            $table->string('tel')->nullable();
-        });*/
     }
 
     /**
