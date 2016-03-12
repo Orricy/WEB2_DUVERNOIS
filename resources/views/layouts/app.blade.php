@@ -31,6 +31,12 @@
             margin-top: 0.5%;
             margin-bottom: 0.5%;
         }
+        .comment-section{
+            border-top: 3px solid darkgrey;
+            padding-top: 1%;
+            margin-right: 1%;
+            margin-left: 1%;
+        }
     </style>
 </head>
 <body id="app-layout">
