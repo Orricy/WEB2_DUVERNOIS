@@ -14,8 +14,8 @@
     	<p>{!! Form::text('project_phone', null, array('class' => 'form-control', 'placeholder' => 'Téléphone')) !!}</p>
     	<p>{!! Form::text('project_mediator', null, array('class' => 'form-control', 'placeholder' => 'Nom et fonction du contact pour le suivi du projet avec étudiants')) !!}</p>
     	<p>{!! Form::text('mediator_adress', null, array('class' => 'form-control', 'placeholder' => 'Adresse postale')) !!}</p>
-    	<p>{!! Form::email('mediator_adress', null, array('class' => 'form-control', 'placeholder' => 'Email')) !!}</p>
-    	<p>{!! Form::text('mediator_adress', null, array('class' => 'form-control', 'placeholder' => 'Téléphone')) !!}</p>
+    	<p>{!! Form::email('mediator_email', null, array('class' => 'form-control', 'placeholder' => 'Email')) !!}</p>
+    	<p>{!! Form::text('mediator_phone', null, array('class' => 'form-control', 'placeholder' => 'Téléphone')) !!}</p>
     	<h4 class="text-center">VOTRE FICHE D’IDENTITE</h4>
         <p>{!! Form::textarea('identity', null, array('class' => 'form-control', 'rows' => 5, 'placeholder' => 'votre fiche d\'identité')) !!}</p>
         <h3 class="text-center">Description du projet</h3>
