@@ -9,8 +9,7 @@
     <div class="row comment-section">
         <div class="col-md-12">
             {!! Form::open(array('url' => route('articles.storeComment', $post->id), 'method' => 'POST')) !!}
-                {!! Form::textarea('comment', null, array('class' => 'form-control', 'rows' => 3, 'placeholder' => 'votre commentaire')) !!}
-                <br>
+                <P>{!! Form::textarea('comment', null, array('class' => 'form-control', 'rows' => 3, 'placeholder' => 'votre commentaire')) !!}</P>
                 {!! Form::submit('Envoyer', array('class' => 'form-control btn btn-primary')) !!}
             {!! Form::close() !!}
             @if($errors)

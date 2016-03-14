@@ -27,6 +27,10 @@ Route::group(['middleware' => 'web'], function () {
 
 	Route::resource('/articles', 'PostController');
 
+	Route::resource('/projects', 'ProjectController');
+
+	Route::resource('/contact', 'ContactController');
+
 	Route::get('/', function () {
 	    return view('welcome');
 	});

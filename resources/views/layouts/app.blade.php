@@ -62,8 +62,10 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/home') }}">Home</a></li>
+                    <li><a href="{{ route('projects.create') }}">Projet</a></li>
                     <li><a href="{{ route('articles.index') }}">Articles</a></li>
                     <li><a href="{{ route('articles.create') }}">Créer</a></li>
+                    <li><a href="{{ route('contact.create') }}">Contact</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
