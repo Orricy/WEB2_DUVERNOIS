@@ -25,10 +25,21 @@
         </div>
         <div class="col-md-12">
         	@foreach($comments as $comment)
-        		<div class="comment col-md-12">
-    				{{ $comment->comment}}
-    				<small class="row">{{ $comment->user->name}}</small>
-        		</div>
+                <div class="comment col-md-12">
+                   <div class="col-md-11">
+                        {{ $comment->comment}}
+                        <small class="row">{{ $comment->user->name}}</small>
+                    </div>
+                    @if(Auth::guest())
+                        <div class="col-md-1"></div>
+                    @elseif(Auth::user()->is_admin == 1)
+                        <div class="col-md-1">
+                            {{ Form::model($post, array('route' => array('articles.destroyComment', $comment->id), 'method' => 'DELETE',)) }}
+                                {!! Form::submit('×', array('class' => '')) !!}
+                            {{ Form::close() }}
+                        </div>
+                    @endif
+                </div>
         	@endforeach
         </div>
     </div>

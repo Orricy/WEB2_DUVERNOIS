@@ -85,6 +85,25 @@ class PostController extends Controller
     }
 
     /**
+     * Store a newly created delete in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function deleteComment(Request $request, $id)
+    {
+        $comment = Comment::find($id);
+        if($comment){
+            $comment->delete();
+            return redirect()->route('articles.show', $id);
+        }
+        else
+            return redirect()->route('articles.show', $id);
+        
+    }
+
+    /**
      * Display the specified resource.
      *
      * @param  int  $id
