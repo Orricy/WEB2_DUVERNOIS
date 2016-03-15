@@ -13,6 +13,7 @@ class ProjectController extends Controller
 {
     public function __construct(){
         $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->middleware('isAdmin', ['except' => ['index', 'show', 'create', 'store']]);
     }
     /**
      * Display a listing of the resource.
