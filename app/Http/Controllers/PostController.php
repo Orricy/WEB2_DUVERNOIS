@@ -14,6 +14,7 @@ class PostController extends Controller
 {
     public function __construct(){
         $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->middleware('isAdmin', ['except' => ['index', 'show', 'create', 'store', 'storeComment']]);
     }
     /**
      * Display a listing of the resource.
@@ -52,19 +53,6 @@ class PostController extends Controller
         $post->description = $request->description;
         $post->user_id = $request->user_id;
         $post->save();*/
-        /*$this->validate($request,
-            [
-                'user_id' => 'required',
-                'title' => 'required|min:10',
-                'description' => 'required|min:10',
-            ],
-            [
-                'user_id.required' => 'Veuillez indiquez un auteur',
-                'title.required' => 'Titre requis',
-                'title.min' => 'Titre de 10 caractères au moins',
-                'description.required' => 'Description requise',
-                'description.min' => 'Description de 10 caractères au moins',
-            ]);*/
         $post = Post::create([
             'user_id' => $request->user()->id,
             'title' => $request->title,
@@ -87,7 +75,7 @@ class PostController extends Controller
         $comment = Comment::create([
             'comment' =>$request->comment,
             'user_id' => $request->user()->id,
-            'post_id' => 10,
+            'post_id' => $id,
         ]);
         return redirect()->route('articles.show', $id);
     }

@@ -17,7 +17,7 @@ class IsAdmin
     public function handle($request, Closure $next)
     {
         if (Auth::user()->is_admin == 0) {
-            return response('Unauthorized.', 401);
+            return view('401');
         }
         return $next($request);
     }
