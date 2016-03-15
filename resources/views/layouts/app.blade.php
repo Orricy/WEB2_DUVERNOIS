@@ -26,6 +26,13 @@
         .delete-article-btn{
             display: inline-block;
         }
+        .errors{
+            margin-top: 1%;
+        }
+        .error-log{
+            font-size: 1.5em;
+            font-weight: bold;
+        }
         .comment{
             border: 2px solid darkgray;
             margin-top: 0.5%;
@@ -73,7 +80,7 @@
                     <!-- Authentication Links -->
                     @if (Auth::guest())
                         <li><a href="{{ url('/login') }}">Login</a></li>
-                        <li><a href="{{ url('/register') }}">Register</a></li>
+                        <li><a href="{{ url('/register') }}">Register</a></li>s
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -81,7 +88,7 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ route('profile.edit', Auth::user()->id) }}">Edit</a></li>
+                                <li><a href="{{ route('profile.edit', Auth::user()->id) }}"><i class="fa-btn glyphicon glyphicon-cog"></i>Edit</a></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </ul>
                         </li>

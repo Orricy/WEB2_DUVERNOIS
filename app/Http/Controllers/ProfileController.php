@@ -11,6 +11,10 @@ use App\Http\Requests;
 
 class ProfileController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -77,12 +81,14 @@ class ProfileController extends Controller
     {
         $this->validate($request,
             [
-                'name' => 'required',
-                'email' => 'required',
+                'name' => 'required|max:255',
+                'email' => 'required|max:255',
             ],
             [
                 'name.required' => 'Veuillez indiquez votre nom',
+                'name.max' => 'Votre nom dépasse la limite de 255 caractères',
                 'email.required' => 'Veuillez indiquez votre mail',
+                'email.max' => 'Votre adresse mail dépasse la limite de 255 caractères',
             ]
         );
         $user = User::find($id);

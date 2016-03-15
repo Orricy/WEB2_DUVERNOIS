@@ -13,11 +13,14 @@
                 {!! Form::submit('Envoyer', array('class' => 'form-control btn btn-primary')) !!}
             {!! Form::close() !!}
             @if($errors)
-                <ul>
+                <div class="errors">
                     @foreach($errors->all() as $error)
-                        <li>{{$error}}</li>
+                        <div class="alert alert-danger alert-dismissible fade in" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            <p class="error-log">{{$error}}</p>
+                        </div>
                     @endforeach
-                </ul>
+                </div>
             @endif
         </div>
         <div class="col-md-12">

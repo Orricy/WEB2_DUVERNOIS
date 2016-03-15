@@ -8,6 +8,9 @@ use App\Http\Requests;
 
 class ContactController extends Controller
 {
+    public function __construct(){
+        $this->middleware('guest', ['except' => ['index', 'show']]);
+    }
     /**
      * Display a listing of the resource.
      *

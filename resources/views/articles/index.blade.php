@@ -13,7 +13,7 @@
                 Voir l'article
             </button>
         </a>
-        @if(Auth::check() && Auth::user()->id == $post->user_id)
+        @if(Auth::check() && Auth::user()->is_admin == 1)
             <a href="{{route('articles.edit', $post->id)}}">
                 <button class="btn btn-success">
                     Editer l'article

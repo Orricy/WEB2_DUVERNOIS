@@ -7,11 +7,14 @@
 
 <div class="panel-body">
     @if($errors)
-        <ul>
+        <div class="errors">
             @foreach($errors->all() as $error)
-                <li>{{$error}}</li>
+                <div class="alert alert-danger alert-dismissible fade in" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <p class="error-log">{{$error}}</p>
+                </div>
             @endforeach
-        </ul>
+        </div>
     @endif
     {!! Form::open(array('url' => route('projects.store'), 'method' => 'POST')) !!}
     	<p>{!! Form::text('project_name', null, array('class' => 'form-control', 'placeholder' => 'NOM DU PROJET')) !!}</p>

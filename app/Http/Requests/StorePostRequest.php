@@ -24,7 +24,7 @@ class StorePostRequest extends Request
     public function rules()
     {
         return [
-            'title' => 'required|min:10',
+            'title' => 'required|min:10|max:150',
             'description' => 'required|min:10',
         ];
     }
@@ -33,6 +33,7 @@ class StorePostRequest extends Request
         return [
             'title.required' => 'Titre requis',
             'title.min' => 'Titre de 10 caractères au moins',
+            'title.max' => 'Titre de 150 caractères maximum',
             'description.required' => 'Description requise',
             'description.min' => 'Description de 10 caractères au moins',
         ];

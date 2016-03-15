@@ -48,11 +48,6 @@ class PostController extends Controller
      */
     public function store(Requests\StorePostRequest $request)
     {
-        /*$post = new Post();
-        $post->title = $request->title;
-        $post->description = $request->description;
-        $post->user_id = $request->user_id;
-        $post->save();*/
         $post = Post::create([
             'user_id' => $request->user()->id,
             'title' => $request->title,
@@ -70,7 +65,16 @@ class PostController extends Controller
      */
     public function storeComment(Request $request, $id)
     {
-        //dd($id);
+        $this->validate($request,
+            [
+                'comment' => 'required|min:5|max:255',
+            ],
+            [
+                'comment.required' => 'Veuillez écrire du text',
+                'comment.min' => 'Merci d\'écrire un minimum',
+                'comment.max' => 'Veuillez ne pas dépasser la limite de 255 caractères',
+            ]
+        );
 
         $comment = Comment::create([
             'comment' =>$request->comment,
