@@ -50,6 +50,10 @@ Route::group(['middleware' => 'web'], function () {
 			'as' => 'articles.storeComment', 
 			'uses' => 'PostController@storeComment'
 		]);
+		Route::delete('/{id}', [
+			'as' => 'articles.destroyComment', 
+			'uses' => 'PostController@deleteComment'
+		]);
 	});
 
     Route::auth();
