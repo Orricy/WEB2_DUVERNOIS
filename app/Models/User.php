@@ -27,5 +27,10 @@ class User extends Authenticatable
     public function posts(){
         return $this->hasmany('App\Models\Post');
     }
-
+    public function comments(){
+        return $this->hasmany('App\Models\Comment');
+    }
+    public function projects(){
+        return $this->hasmany('App\Models\Project');
+    }
 }

@@ -6,7 +6,14 @@
 </div>
 
 <div class="panel-body">
-    {!! Form::open(array('url' => route('articles.index'), 'method' => 'POST')) !!}
+    @if($errors)
+        <ul>
+            @foreach($errors->all() as $error)
+                <li>{{$error}}</li>
+            @endforeach
+        </ul>
+    @endif
+    {!! Form::open(array('url' => route('projects.store'), 'method' => 'POST')) !!}
     	<p>{!! Form::text('project_name', null, array('class' => 'form-control', 'placeholder' => 'NOM DU PROJET')) !!}</p>
     	<p>{!! Form::text('project_creator', null, array('class' => 'form-control', 'placeholder' => 'Nom, Prénom et fonction du commanditaire du projet')) !!}</p>
     	<p>{!! Form::text('project_adress', null, array('class' => 'form-control', 'placeholder' => 'Adresse postale')) !!}</p>
