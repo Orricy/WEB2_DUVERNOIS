@@ -24,7 +24,6 @@ class StorePostRequest extends Request
     public function rules()
     {
         return [
-            'user_id' => 'required',
             'title' => 'required|min:10',
             'description' => 'required|min:10',
         ];
@@ -32,7 +31,6 @@ class StorePostRequest extends Request
     public function messages()
     {
         return [
-            'user_id.required' => 'Veuillez indiquez un auteur',
             'title.required' => 'Titre requis',
             'title.min' => 'Titre de 10 caractères au moins',
             'description.required' => 'Description requise',

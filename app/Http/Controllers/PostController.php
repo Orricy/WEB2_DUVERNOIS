@@ -34,8 +34,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        $users = User::all()->lists('name', 'id');
-        return view('articles.create')->with(compact('users'));
+        /*$users = User::all()->lists('name', 'id');
+        return view('articles.create')->with(compact('users'));*/
+        return view('articles.create');
     }
 
     /**

@@ -31,6 +31,8 @@ Route::group(['middleware' => 'web'], function () {
 
 	Route::resource('/contact', 'ContactController');
 
+	Route::resource('/profile', 'ProfileController');
+
 	Route::get('/', function () {
 	    return view('welcome');
 	});
@@ -42,10 +44,6 @@ Route::group(['middleware' => 'web'], function () {
 
 		Route::get('/create', function () {
 		    return view('articles.create');
-		});
-
-		Route::get('/{id}', function ($id) {
-		    return 'articles no.'.$id;
 		});*/
 
 		Route::post('/{id}', [
