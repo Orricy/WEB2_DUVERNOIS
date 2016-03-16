@@ -22,7 +22,11 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        //
+        //$projects = Project::all();
+        $projectsWaiting = Project::where('status', 'waiting approval')->orderBy('id', 'desc')->get();
+        $projectsApproved = Project::where('status', 'approved')->orderBy('id', 'desc')->get();
+        $projectsRefused = Project::where('status', 'refused')->orderBy('id', 'desc')->get();
+        return view('projects.index')->with(compact('projectsWaiting', 'projectsApproved', 'projectsRefused'));
     }
 
     /**
