@@ -71,7 +71,7 @@
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/home') }}">Home</a></li>
                     <li><a href="{{ route('projects.create') }}">Projet</a></li>
-                    <li><a href="{{ route('projects.index') }}">Projet start</a></li>
+                    <li><a href="{{ route('projects.index') }}">Projet view</a></li>
                     <li><a href="{{ route('articles.index') }}">Articles</a></li>
                     <li><a href="{{ route('articles.create') }}">Créer</a></li>
                     <li><a href="{{ route('contact.create') }}">Contact</a></li>

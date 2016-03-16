@@ -76,7 +76,11 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
-        //
+        $project = Project::find($id);
+        if($project)
+            return view('projects.show')->with(compact('project'));
+        else
+            return view('projects.index');
     }
 
     /**
@@ -87,7 +91,11 @@ class ProjectController extends Controller
      */
     public function edit($id)
     {
-        //
+        $project = Project::find($id);
+        if($project)
+            return view('projects.edit')->with(compact('project'));
+        else
+            return view('projects.index');
     }
 
     /**
@@ -110,6 +118,12 @@ class ProjectController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $projects = Project::find($id);
+        if($projects){
+            $projects->delete();
+            return redirect()->to('/projects');
+        }
+        else
+            return redirect()->to('/projects');
     }
 }
