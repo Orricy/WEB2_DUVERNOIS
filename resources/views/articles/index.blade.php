@@ -5,6 +5,7 @@
 
 <div class="panel-body">
     Liste des articles
+    <a href="{{ route('articles.create') }}" class="btn btn-primary btn-lg btn-block" role="button">Poster un article</a>
     @foreach($posts as $post)
         <h2>{{$post->title}}</h2>
         <p>{{$post->description}}</p>
