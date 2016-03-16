@@ -65,7 +65,7 @@ class ProjectController extends Controller
             'goal' => $request->goal,
             'other' => $request->other,
         ]);
-        return redirect()->route('projects.create');
+        return redirect()->route('projects.index');
     }
 
     /**
@@ -107,7 +107,29 @@ class ProjectController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $project = Project::find($id);
+        if($project){
+            $project->name = $request->project_name;
+            $project->creator = $request->project_creator;
+            $project->adress_creator = $request->project_adress;
+            $project->email_creator = $request->project_email;
+            $project->phone_creator = $request->project_phone;
+            $project->contact = $request->project_mediator;
+            $project->adress_contact = $request->mediator_adress;
+            $project->email_contact = $request->mediator_email;
+            $project->phone_contact = $request->mediator_phone;
+            $project->identity = $request->identity;
+            $project->type = $request->project_type;
+            $project->context = $request->context;
+            $project->demand = $request->demand;
+            $project->goal = $request->goal;
+            $project->other = $request->other;
+            $project->save();
+            return redirect()->route('projects.show', $id);
+        }
+        else{
+            return redirect()->to('/projects');
+        }
     }
 
     /**

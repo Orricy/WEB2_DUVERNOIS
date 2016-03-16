@@ -16,7 +16,7 @@
             @endforeach
         </div>
     @endif
-    {{ Form::model($project, array('route' => array('articles.update', $project->id), 'method' => 'PUT',)) }}
+    {{ Form::model($project, array('route' => array('projects.update', $project->id), 'method' => 'PUT',)) }}
     	<p>{!! Form::text('project_name', $project->name, array('class' => 'form-control', 'placeholder' => 'NOM DU PROJET')) !!}</p>
     	<p>{!! Form::text('project_creator', $project->creator, array('class' => 'form-control', 'placeholder' => 'Nom, Prénom et fonction du commanditaire du projet')) !!}</p>
     	<p>{!! Form::text('project_adress', $project->adress_creator, array('class' => 'form-control', 'placeholder' => 'Adresse postale')) !!}</p>
