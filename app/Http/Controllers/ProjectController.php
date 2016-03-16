@@ -65,7 +65,7 @@ class ProjectController extends Controller
             'goal' => $request->goal,
             'other' => $request->other,
         ]);
-        return redirect()->route('projects.create');
+        return redirect()->route('projects.index');
     }
 
     /**
@@ -76,7 +76,11 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
-        //
+        $project = Project::find($id);
+        if($project)
+            return view('projects.show')->with(compact('project'));
+        else
+            return view('projects.index');
     }
 
     /**
@@ -87,7 +91,11 @@ class ProjectController extends Controller
      */
     public function edit($id)
     {
-        //
+        $project = Project::find($id);
+        if($project)
+            return view('projects.edit')->with(compact('project'));
+        else
+            return view('projects.index');
     }
 
     /**
@@ -99,7 +107,57 @@ class ProjectController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $project = Project::find($id);
+        if($project){
+            $project->name = $request->project_name;
+            $project->creator = $request->project_creator;
+            $project->adress_creator = $request->project_adress;
+            $project->email_creator = $request->project_email;
+            $project->phone_creator = $request->project_phone;
+            $project->contact = $request->project_mediator;
+            $project->adress_contact = $request->mediator_adress;
+            $project->email_contact = $request->mediator_email;
+            $project->phone_contact = $request->mediator_phone;
+            $project->identity = $request->identity;
+            $project->type = $request->project_type;
+            $project->context = $request->context;
+            $project->demand = $request->demand;
+            $project->goal = $request->goal;
+            $project->other = $request->other;
+            $project->save();
+            return redirect()->route('projects.show', $id);
+        }
+        else{
+            return redirect()->to('/projects');
+        }
+    }
+
+    /**
+     * Update the project status in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updateStatus(Request $request, $id)
+    {
+        $authorizedStatus = array('waiting approval', 'approved', 'refused');
+        $project = Project::find($id);
+        //check for authorized value
+        if (in_array($request->status, $authorizedStatus)) {
+            if($project){
+                $project->status = $request->status;
+                $project->save();
+                return redirect()->route('projects.show', $id);
+            }
+            else{
+                return redirect()->route('projects.show', $id);
+            }
+        }
+        
+        else{
+            return redirect()->to('/projects');
+        }
     }
 
     /**
@@ -110,6 +168,12 @@ class ProjectController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $projects = Project::find($id);
+        if($projects){
+            $projects->delete();
+            return redirect()->to('/projects');
+        }
+        else
+            return redirect()->to('/projects');
     }
 }
