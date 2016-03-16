@@ -111,6 +111,34 @@ class ProjectController extends Controller
     }
 
     /**
+     * Update the project status in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updateStatus(Request $request, $id)
+    {
+        $authorizedStatus = array('waiting approval', 'approved', 'refused');
+        $project = Project::find($id);
+        //check for authorized value
+        if (in_array($request->status, $authorizedStatus)) {
+            if($project){
+                $project->status = $request->status;
+                $project->save();
+                return redirect()->route('projects.show', $id);
+            }
+            else{
+                return redirect()->route('projects.show', $id);
+            }
+        }
+        
+        else{
+            return redirect()->to('/projects');
+        }
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id

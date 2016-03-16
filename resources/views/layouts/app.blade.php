@@ -33,6 +33,15 @@
             font-size: 1.5em;
             font-weight: bold;
         }
+        .project{
+            border: 2px solid black;
+            border-radius: 5px;
+            padding: 5px;
+            margin-bottom: 2%;
+        }
+        .project-btn-second-row{
+            margin-top: 1%;
+        }
         .comment{
             border: 2px solid darkgray;
             margin-top: 0.5%;

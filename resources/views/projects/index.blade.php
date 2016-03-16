@@ -10,75 +10,120 @@
         <div class="col-md-4">
             <h4 class="text-center">En attente de validation</h4>
             @foreach($projectsWaiting as $project)
-                <h2>{{$project->name}}</h2>
-                <p>{{$project->type}}</p>
-                <a href="{{route('projects.show', $project->id)}}">
-                    <button class="btn btn-info">
-                        Voir le projet
-                    </button>
-                </a>
-                @if(Auth::check() && Auth::user()->is_admin == 1)
-                    <a href="{{route('projects.edit', $project->id)}}">
-                        <button class="btn btn-success">
-                            Editer le projet
-                        </button>
-                    </a>
-                    <span class="delete-article-btn">
-                    {{-- Form::model($project, array('route' => array('projects.destroy', $project->id), 'method' => 'DELETE',)) }}
-                        {!! Form::submit('Supprimer', array('class' => 'btn btn-danger')) !!}
-                    {{ Form::close() --}}
-                    </span>
-                @endif
+                <div class="project">
+                    <a href="{{route('projects.show', $project->id)}}" class="btn btn-block btn-warning" role="button"><h2>{{$project->name}}</h2></a>
+                    <p class="text-center">{{$project->type}}</p>
+                    @if(Auth::check() && Auth::user()->is_admin == 1)
+                        <div class="row">
+                            <div class="col-md-6">
+                                {{ Form::model($project, array('route' => array('projects.updateStatus', $project->id), 'method' => 'POST',)) }}
+                                    {!! Form::hidden('status', 'approved') !!}
+                                    {!! Form::submit('Approuver', array('class' => 'btn btn-block btn-success')) !!}
+                                {{ Form::close() }}
+                            </div>
+                            <div class="col-md-6">
+                                {{ Form::model($project, array('route' => array('projects.updateStatus', $project->id), 'method' => 'POST',)) }}
+                                    {!! Form::hidden('status', 'refused') !!}
+                                    {!! Form::submit('Refuser', array('class' => 'btn btn-block btn-danger')) !!}
+                                {{ Form::close() }}
+                            </div>
+                        </div>
+                        <div class="row project-btn-second-row">
+                            <div class="col-md-6">
+                                <a href="{{route('projects.edit', $project->id)}}">
+                                    <button class="btn btn-block btn-primary">
+                                        Editer le projet
+                                    </button>
+                                </a>
+                            </div>
+                            <div class="col-md-6">
+                                {{ Form::model($project, array('route' => array('projects.destroy', $project->id), 'method' => 'DELETE',)) }}
+                                    {!! Form::submit('Supprimer', array('class' => 'btn btn-block btn-danger')) !!}
+                                {{ Form::close() }}
+                            </div>
+                        </div>
+                    @endif
+                </div>
             @endforeach
         </div>
         {{-- Affichage des projets approuvé --}}
         <div class="col-md-4">
             <h4 class="text-center">Approuvé</h4>
             @foreach($projectsApproved as $project)
-                <h2>{{$project->name}}</h2>
-                <p>{{$project->type}}</p>
-                <a href="{{route('projects.show', $project->id)}}">
-                    <button class="btn btn-info">
-                        Voir le projet
-                    </button>
-                </a>
-                @if(Auth::check() && Auth::user()->is_admin == 1)
-                    <a href="{{route('projects.edit', $project->id)}}">
-                        <button class="btn btn-success">
-                            Editer le projet
-                        </button>
-                    </a>
-                    <span class="delete-article-btn">
-                    {{-- Form::model($project, array('route' => array('projects.destroy', $project->id), 'method' => 'DELETE',)) }}
-                        {!! Form::submit('Supprimer', array('class' => 'btn btn-danger')) !!}
-                    {{ Form::close() --}}
-                    </span>
-                @endif
+                <div class="project">
+                    <a href="{{route('projects.show', $project->id)}}" class="btn btn-block btn-success" role="button"><h2>{{$project->name}}</h2></a>
+                    <p class="text-center">{{$project->type}}</p>
+                    @if(Auth::check() && Auth::user()->is_admin == 1)
+                        <div class="row">
+                            <div class="col-md-6">
+                                {{ Form::model($project, array('route' => array('projects.updateStatus', $project->id), 'method' => 'POST',)) }}
+                                    {!! Form::hidden('status', 'approved') !!}
+                                    {!! Form::submit('Approuver', array('class' => 'btn btn-block btn-success')) !!}
+                                {{ Form::close() }}
+                            </div>
+                            <div class="col-md-6">
+                                {{ Form::model($project, array('route' => array('projects.updateStatus', $project->id), 'method' => 'POST',)) }}
+                                    {!! Form::hidden('status', 'refused') !!}
+                                    {!! Form::submit('Refuser', array('class' => 'btn btn-block btn-danger')) !!}
+                                {{ Form::close() }}
+                            </div>
+                        </div>
+                        <div class="row project-btn-second-row">
+                            <div class="col-md-6">
+                                <a href="{{route('projects.edit', $project->id)}}">
+                                    <button class="btn btn-block btn-primary">
+                                        Editer le projet
+                                    </button>
+                                </a>
+                            </div>
+                            <div class="col-md-6">
+                                {{ Form::model($project, array('route' => array('projects.destroy', $project->id), 'method' => 'DELETE',)) }}
+                                    {!! Form::submit('Supprimer', array('class' => 'btn btn-block btn-danger')) !!}
+                                {{ Form::close() }}
+                            </div>
+                        </div>
+                    @endif
+                </div>s
             @endforeach
         </div>
         {{-- Affichage des projets refusé --}}
         <div class="col-md-4">
             <h4 class="text-center">Refusé</h4>
             @foreach($projectsRefused as $project)
-                <h2>{{$project->name}}</h2>
-                <p>{{$project->type}}</p>
-                <a href="{{route('projects.show', $project->id)}}">
-                    <button class="btn btn-info">
-                        Voir le projet
-                    </button>
-                </a>
-                @if(Auth::check() && Auth::user()->is_admin == 1)
-                    <a href="{{route('projects.edit', $project->id)}}">
-                        <button class="btn btn-success">
-                            Editer le projet
-                        </button>
-                    </a>
-                    <span class="delete-article-btn">
-                    {{-- Form::model($project, array('route' => array('projects.destroy', $project->id), 'method' => 'DELETE',)) }}
-                        {!! Form::submit('Supprimer', array('class' => 'btn btn-danger')) !!}
-                    {{ Form::close() --}}
-                    </span>
-                @endif
+                <div class="project">
+                    <a href="{{route('projects.show', $project->id)}}" class="btn btn-block btn-danger" role="button"><h2>{{$project->name}}</h2></a>
+                    <p class="text-center">{{$project->type}}</p>
+                    @if(Auth::check() && Auth::user()->is_admin == 1)
+                        <div class="row">
+                            <div class="col-md-6">
+                                {{ Form::model($project, array('route' => array('projects.updateStatus', $project->id), 'method' => 'POST',)) }}
+                                    {!! Form::hidden('status', 'approved') !!}
+                                    {!! Form::submit('Approuver', array('class' => 'btn btn-block btn-success')) !!}
+                                {{ Form::close() }}
+                            </div>
+                            <div class="col-md-6">
+                                {{ Form::model($project, array('route' => array('projects.updateStatus', $project->id), 'method' => 'POST',)) }}
+                                    {!! Form::hidden('status', 'refused') !!}
+                                    {!! Form::submit('Refuser', array('class' => 'btn btn-block btn-danger')) !!}
+                                {{ Form::close() }}
+                            </div>
+                        </div>
+                        <div class="row project-btn-second-row">
+                            <div class="col-md-6">
+                                <a href="{{route('projects.edit', $project->id)}}">
+                                    <button class="btn btn-block btn-primary">
+                                        Editer le projet
+                                    </button>
+                                </a>
+                            </div>
+                            <div class="col-md-6">
+                                {{ Form::model($project, array('route' => array('projects.destroy', $project->id), 'method' => 'DELETE',)) }}
+                                    {!! Form::submit('Supprimer', array('class' => 'btn btn-block btn-danger')) !!}
+                                {{ Form::close() }}
+                            </div>
+                        </div>
+                    @endif
+                </div>
             @endforeach
         </div>
     </div>

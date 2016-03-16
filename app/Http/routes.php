@@ -37,6 +37,13 @@ Route::group(['middleware' => 'web'], function () {
 	    return view('welcome');
 	});
 
+	Route::group(['prefix' => 'projects'], function(){
+		Route::post('/{id}', [
+			'as' => 'projects.updateStatus', 
+			'uses' => 'ProjectController@updateStatus'
+		]);
+	});
+
 	Route::group(['prefix' => 'articles'], function(){
 		/*Route::get('/', function () {
 		    return view('articles.index');
