@@ -34,5 +34,10 @@ return [
         'key'    => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
+    'github' => [
+        'client_id' => '4037892b688c8948c18b',
+        'client_secret' => '2f3667097a11df5ef363ed79967c4b5d1c966348',
+        'redirect' => 'http://td-laravel-damien-duvernois.dev/',
+    ],
 
 ];
