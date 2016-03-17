@@ -37,6 +37,9 @@ Route::group(['middleware' => 'web'], function () {
 	    return view('welcome');
 	});
 
+	Route::get('auth/github', 'Auth\AuthController@redirectToProvider');
+	Route::get('auth/github/callback', 'Auth\AuthController@handleProviderCallback');
+
 	Route::group(['prefix' => 'projects'], function(){
 		Route::post('/{id}', [
 			'as' => 'projects.updateStatus', 
