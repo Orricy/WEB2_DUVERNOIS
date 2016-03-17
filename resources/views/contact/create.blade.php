@@ -5,6 +5,7 @@
 
 <div class="panel-body">
     @if(isset($result))
+        {{-- vérification du résultat suite à l'envoi du formulaire (0 = échec / 1 = réussite) --}}
         @if($result == 0)
             <div class="alert alert-danger alert-dismissible fade in" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">

@@ -11,15 +11,6 @@ class ContactController extends Controller
     public function __construct(){
         $this->middleware('auth');
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
     /**
      * Show the form for sending an email.
@@ -51,7 +42,7 @@ class ContactController extends Controller
                 'message.required' => 'Veuillez écrire votre message',
             ]
         );
-
+        //Envoie du mail
         $mail = new \PHPMailer(true);
         //dd($mail);
 
@@ -75,9 +66,11 @@ class ContactController extends Controller
         if(!$mail->send()) {
             $result = 0;
             $errorLog = $mail->ErrorInfo;
+            //retour avec erreur à l'envoie
             return view('contact.create')->with(compact('result', 'errorLog'));
         } else {
             $result = 1;
+            //retour avec succès
             return view('contact.create')->with(compact('result'));
         }
     }
@@ -89,40 +82,6 @@ class ContactController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
     {
         //
     }

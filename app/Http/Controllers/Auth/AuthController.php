@@ -67,9 +67,8 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
+        //Envoie du mail
         $mail = new \PHPMailer(true);
-        //dd($mail);
-
         $mail->isSMTP();                                        // Set mailer to use SMTP
         $mail->Host = 'smtp.gmail.com';                         // Specify main and backup SMTP servers
         $mail->SMTPAuth = true;                                 // Enable SMTP authentication
@@ -88,7 +87,7 @@ class AuthController extends Controller
             <p>Bonjour '.$data['name'].',</p>
             <p>Vous venez de créer votre compte sur TD-laravel et nous vous remercions de votre confiance</p>
             <p>Vous pouvez dès à présent accéder à de multiple fonctionnalité sur notre site</p>
-            <p>Vous pouvez dès à présent :</p>
+            <p>Vous pouvez :</p>
             <ul>
                 <li>Ecrire un article</li>
                 <li>Ajouter des commentaires</li>
