@@ -16,6 +16,7 @@
                         <p class="text-center">{{$project->type}}</p>
                         @if(Auth::check() && Auth::user()->is_admin == 1)
                             <div class="row">
+                                {{-- Form pour définir l'état du projet (approuvé/ refusé) --}}
                                 <div class="col-md-6">
                                     {{ Form::model($project, array('route' => array('projects.updateStatus', $project->id), 'method' => 'POST',)) }}
                                         {!! Form::hidden('status', 'approved') !!}
@@ -58,6 +59,7 @@
                         <p class="text-center">{{$project->type}}</p>
                         @if(Auth::check() && Auth::user()->is_admin == 1)
                             <div class="row">
+                                {{-- Form pour définir l'état du projet (approuvé/ refusé) --}}
                                 <div class="col-md-6">
                                     {{ Form::model($project, array('route' => array('projects.updateStatus', $project->id), 'method' => 'POST',)) }}
                                         {!! Form::hidden('status', 'approved') !!}
@@ -100,6 +102,7 @@
                         <p class="text-center">{{$project->type}}</p>
                         @if(Auth::check() && Auth::user()->is_admin == 1)
                             <div class="row">
+                                {{-- Form pour définir l'état du projet (approuvé/ refusé) --}}
                                 <div class="col-md-6">
                                     {{ Form::model($project, array('route' => array('projects.updateStatus', $project->id), 'method' => 'POST',)) }}
                                         {!! Form::hidden('status', 'approved') !!}

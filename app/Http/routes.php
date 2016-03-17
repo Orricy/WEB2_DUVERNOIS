@@ -41,6 +41,7 @@ Route::group(['middleware' => 'web'], function () {
 	Route::get('auth/github/callback', 'Auth\AuthController@handleProviderCallback');
 
 	Route::group(['prefix' => 'projects'], function(){
+		//Route pour custom function in controller
 		Route::post('/{id}', [
 			'as' => 'projects.updateStatus', 
 			'uses' => 'ProjectController@updateStatus'
@@ -48,14 +49,6 @@ Route::group(['middleware' => 'web'], function () {
 	});
 
 	Route::group(['prefix' => 'articles'], function(){
-		/*Route::get('/', function () {
-		    return view('articles.index');
-		});
-
-		Route::get('/create', function () {
-		    return view('articles.create');
-		});*/
-
 		Route::post('/{id}', [
 			'as' => 'articles.storeComment', 
 			'uses' => 'PostController@storeComment'

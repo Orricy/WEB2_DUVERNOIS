@@ -39,8 +39,47 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request,
+            [
+                'email' => 'required',
+                'subject' => 'required',
+                'message' => 'required',
+            ],
+            [
+                'email.required' => 'Veuillez renseigner votre email',
+                'subject.required' => 'Merci de donner un sujet à votre message',
+                'message.required' => 'Veuillez écrire votre message',
+            ]
+        );
+
         $mail = new \PHPMailer(true);
-        dd($mail);
+        //dd($mail);
+
+        $mail->isSMTP();                                        // Set mailer to use SMTP
+        $mail->Host = 'smtp.gmail.com';                         // Specify main and backup SMTP servers
+        $mail->SMTPAuth = true;                                 // Enable SMTP authentication
+        $mail->Username = 'dd.iim.year2@gmail.com';               // SMTP username
+        $mail->Password = 'TRk41Q[poXdF-725_aQ*)/6';               // SMTP password
+        $mail->SMTPSecure = 'ssl';                              // Enable TLS encryption, `ssl` also accepted
+        $mail->Port = 465;                                      // TCP port to connect to
+
+        $mail->setFrom($request->email, $request->subject);
+        $mail->addAddress('d.wastable@gmail.com', 'Damien Duvernois');    // Add a recipient
+
+        $mail->isHTML(true);                                    // Set email format to HTML
+
+        $mail->Subject = $request->subject;
+        $mail->Body    = '<h2>'.$request->subject.'</h2>
+            <p>'.$request->message.'</p>';
+        $mail->AltBody = $request->message;
+        if(!$mail->send()) {
+            $result = 0;
+            $errorLog = $mail->ErrorInfo;
+            return view('contact.create')->with(compact('result', 'errorLog'));
+        } else {
+            $result = 1;
+            return view('contact.create')->with(compact('result'));
+        }
     }
 
     /**

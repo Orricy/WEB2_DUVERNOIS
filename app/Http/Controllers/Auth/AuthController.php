@@ -67,6 +67,50 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
+        $mail = new \PHPMailer(true);
+        //dd($mail);
+
+        $mail->isSMTP();                                        // Set mailer to use SMTP
+        $mail->Host = 'smtp.gmail.com';                         // Specify main and backup SMTP servers
+        $mail->SMTPAuth = true;                                 // Enable SMTP authentication
+        $mail->Username = 'dd.iim.year2@gmail.com';               // SMTP username
+        $mail->Password = 'TRk41Q[poXdF-725_aQ*)/6';               // SMTP password
+        $mail->SMTPSecure = 'ssl';                              // Enable TLS encryption, `ssl` also accepted
+        $mail->Port = 465;                                      // TCP port to connect to
+
+        $mail->setFrom('dd.iim.year2@gmail.com', 'Inscription sur td-laravel Damien Duvernois');
+        $mail->addAddress($data['email'], $data['name']);    // Add a recipient
+
+        $mail->isHTML(true);                                    // Set email format to HTML
+
+        $mail->Subject = 'Inscription sur TD-laravel Damien Duvernois';
+        $mail->Body    = '<h2>Laravel année 2 projet</h2>
+            <p>Bonjour '.$data['name'].',</p>
+            <p>Vous venez de créer votre compte sur TD-laravel et nous vous remercions de votre confiance</p>
+            <p>Vous pouvez dès à présent accéder à de multiple fonctionnalité sur notre site</p>
+            <p>Vous pouvez dès à présent :</p>
+            <ul>
+                <li>Ecrire un article</li>
+                <li>Ajouter des commentaires</li>
+                <li>Lancer votre projet</li>
+                <li>Contacter l\'administration</li>
+                <li>Modifier votre profile</li>
+            </ul>
+            <p>Prenez garde car l\'admin est tout puissant, il peut :</p>
+            <ul>
+                <li>Editer et supprimer un article</li>
+                <li>Supprimer des commentaires</li>
+                <li>valider, refuser, éditer ou encore supprimer vos projets</li>
+            </ul>
+            <small>Et dire qu\'un seul paramètre dans la base de donnée peut octroyer tant de pouvoir</small>
+            <p>Vous pouvez si vous êtes intéressé pae le développement suivre le projet sur github à cette adresse
+                <a href="https://github.com/Orricy/WEB2_DUVERNOIS_JULIEN">Github WEB2_DUVERNOIS</a>
+            </p>
+            <p><strong>IIM</strong> - Année 2</p>
+            <p>Damien Duvernois</p>'
+            ;
+        $mail->AltBody = 'Dommage votre client de messagerie ne supporte pas le format html, toutefois votre compte sur TD-laravel  a été créer.';
+        $mail->send();
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
